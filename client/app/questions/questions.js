@@ -9,7 +9,7 @@ angular.module('boorish.questions', [])
     Questions.getAllQuestions().then(function(data) {
       $scope.questions = data.results;
     });
-    
+
   };
 
 
