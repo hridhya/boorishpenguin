@@ -5,6 +5,7 @@ angular.module('boorishpenguin', [
   'boorish.questions',
   'boorish.answers',
   'boorish.auth',
+  'boorish.mymodal',
   'ngRoute'
   ])
 
@@ -33,6 +34,12 @@ angular.module('boorishpenguin', [
     .when('/signin', {
       templateUrl: 'app/auth/signin.html',
       controller: 'AuthController'
+    })
+    .when('/sessionq', {
+      templateUrl: 'app/sessionQ/sessionQ.html',
+      controller: 'ModalCtrl',
+      // controller: 'SessionQController'
+      // controllerAs: 'main'
     })
     .otherwise({
       routeTo: '/signin'
