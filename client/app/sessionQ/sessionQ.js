@@ -1,41 +1,35 @@
-// var sessionq = angular.module('boorish.sessionQ', [])
-
-// sessionq.controller('SessionQController', function($scope) {
-
-// });
 
 var mymodal = angular.module('boorish.mymodal', []);
 
-mymodal.controller('ModalCtrl', function ($scope) {
-    $scope.ses={};
+mymodal.controller('ModalCtrl', function($scope, $window, SessionQ) {
+    $scope.ses = {};
+    $scope.ses.userID = $window.localStorage.getItem('com.boorish');
 
-
-    $scope.ses.sessionQ=[];
-    $scope.test;
+    // $scope.ses
+    $scope.addSessionQ = function(){
+      console.log($scope.ses);
+      SessionQ.PostSessionQ($scope.ses);
+    }
 
     $scope.showModal = false;
     $scope.toggleModal = function(){
         $scope.showModal = !$scope.showModal;
     };
 
-    $scope.ok = function () {
-    $modal.close($scope.selected.item);
-  };
-
   });
 
 mymodal.directive('modal', function () {
     return {
-      template: '<div class="modal fade">' + 
-          '<div class="modal-dialog">' + 
-            '<div class="modal-content">' + 
-              '<div class="modal-header">' + 
+      template: '<div class="modal fade">' +
+          '<div class="modal-dialog">' +
+            '<div class="modal-content">' +
+              '<div class="modal-header">' +
                 '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' + 
-                '<h4 class="modal-title">{{ title }}</h4>' + 
-              '</div>' + 
-              '<div class="modal-body" ng-transclude></div>' + 
-            '</div>' + 
-          '</div>' + 
+                '<h4 class="modal-title">{{ title }}</h4>' +
+              '</div>' +
+              '<div class="modal-body" ng-transclude></div>' +
+            '</div>' +
+          '</div>' +
         '</div>',
       restrict: 'E',
       transclude: true,

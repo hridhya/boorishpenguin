@@ -3,10 +3,16 @@ var answerControllers = require ('../controllers/answerController.js');
 var userControllers = require ('../controllers/userControllers.js');
 var courseControllers = require ('../controllers/courseControllers.js');
 var tagControllers = require ('../controllers/tagControllers.js');
+var sessionQController = require('../controllers/sessionQController.js');
 var passport = require('passport');
 
 
 module.exports = function(app, express, ensureAuth) {
+  //sessionQ 
+  app.get('/townhall/sessionQ', sessionQController.allSessionQ)
+  app.post('/townhall/sessionQ', sessionQController.newSessionQ);
+  // app.get('townhall/sessionQ', sessionQController.)
+
   app.get('/townhall/questions', ensureAuth, questionControllers.allQuestions);
   app.post('/townhall/questions', ensureAuth, questionControllers.newQuestion);
   app.delete('/townhall/questions/:id', ensureAuth, questionControllers.deleteQuestion);

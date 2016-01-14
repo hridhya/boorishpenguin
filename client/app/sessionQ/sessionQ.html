@@ -12,17 +12,22 @@
           <label for="question">What is your question?</label>
           <input class="form-control" ng-model="ses.sessionQ" type='text' size ="225">
         </div>
-        <button type="text" type="submit" class="btn btn-default">Submit</button>
+        <button type="text" type="submit" ng-click='addSessionQ()' class="btn btn-default">Submit</button>
         <p> {{sessionQ}}</p>
       </form>
     </modal>
   </div>
 
-<p ng-show="ses.sessionQ"> {{ses.sessionQ}} </p>
+  <div ng-show="ses.sessionQ"> {{ses.sessionQ}} </div>
+</div>
 
+<!--   <div ng-repeat='question in ses.sessionQ' class="answer-page-item">
+    <div ng-show="ses.sessionQ"> {{ses.question}}</div>
   </div>
- 
+</div>
 
+ <div ng-show="ses.sessionQ"> {{ses.question}}</div>
+  </div> -->
 
 
 

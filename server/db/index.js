@@ -87,6 +87,37 @@ var Like = db.define('Like', {
     timestamps: false
 });
 
+// var SessionQuestion =  db.define('SessionQuestion', {},
+//   {text: Sequelize.STRING
+// });
+
+var SessionQuestion = db.define('SessionQuestion', {
+  text: Sequelize.STRING
+}, {
+  timestamps: false
+});
+
+var User = db.define('User', {
+  username: Sequelize.STRING,
+  name: Sequelize.STRING,
+  name_last: Sequelize.STRING,
+  name_first: Sequelize.STRING,
+  isTeacher: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
+  },
+  points: {
+    type: Sequelize.INTEGER,
+    allowNull: false,
+    defaultValue: 0
+  },
+  email: Sequelize.STRING,
+  picture: Sequelize.STRING
+}, {
+  timestamps: false
+});
+
 Course.belongsToMany(User, {
   through: 'CourseUser'
 });
@@ -94,6 +125,7 @@ User.belongsToMany(Course, {
   through: 'CourseUser'
 });
 
+User.hasMany(SessionQuestion);
 User.hasMany(Post);
 Post.belongsTo(User);
 Tag.hasMany(Post);
@@ -117,9 +149,13 @@ User.sync()
 })
 .then(function() {
   return Like.sync();
+})
+.then(function(){
+  return SessionQuestion.sync();
 });
 
 exports.User = User;
 exports.Course = Course;
 exports.Tag = Tag;
 exports.Post = Post;
+exports.SessionQuestion = SessionQuestion;

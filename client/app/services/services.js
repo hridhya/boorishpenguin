@@ -60,6 +60,26 @@ angular.module('boorish.services', [])
   }
 })
 
+.factory('SessionQ', function($http){
+
+  return {
+    PostSessionQ: function(data){
+    console.log("hey!")
+      return $http({
+        method: 'POST',
+        url: 'townhall/sessionq',
+        data: JSON.stringify(data)
+        // data    : $scope.ses, //forms user object
+        // headers : {'Content-Type': 'application/x-www-form-urlencoded'}
+        // console.log
+      })
+      .then(function(res){
+        return res.data;
+      })
+    }
+  }
+})
+
 // Answers factory handles all requests to add, retrieve, or modify answers in the database
 
 .factory('Answers', function($http) {
